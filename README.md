@@ -11,7 +11,6 @@ This repository contains code and resources for interfacing an Arduino with a Re
 - Accurate timekeeping using RTC modules like DS1307, DS3231, etc.
 - Easy integration with Arduino using I2C communication.
 - Display current date and time on an I2C LCD.
-- Example sketches for basic usage.
 - Ability to set, read, and display the current time and date.
 
 ## Hardware Requirements
