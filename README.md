@@ -23,20 +23,18 @@ This repository contains code and resources for interfacing an Arduino with a Re
 
 ## Wiring Diagram
 
-RTC Module Arduino
-Arduino           RTC Module(DS1302)
-5V --------------- VCC
-GND -------------- GND
-D5 --------------- CLK
-D4 --------------- DATA
-D2 --------------- RST
+Arduino to RTC module connection<br>
+5V --------------- VCC <br>
+GND -------------- GND<br>
+D5 --------------- CLK<br>
+D4 --------------- DATA<br>
+D2 --------------- RST<br>
 
-I2C LCD Arduino
-Arduino           LCD I2C
-5V --------------- VCC
-GND -------------- GND
-SDA -------------- A4
-SCL --------------- A5
+Arduino to LCD connection<br>
+5V --------------- VCC<br>
+GND -------------- GND<br>
+SDA -------------- A4<br>
+SCL --------------- A5<br>
 
 ## Software Requirements
 
