@@ -24,10 +24,20 @@ This repository contains code and resources for interfacing an Arduino with a Re
 ## Wiring Diagram
 
 RTC Module Arduino
-VCC 5V GND GND SDA A4 (or the designated SDA pin for your board) SCL A5 (or the designated SCL pin for your board)
+Arduino           RTC Module(DS1302)
+5V --------------- VCC
+GND -------------- GND
+D5 --------------- CLK
+D4 --------------- DATA
+D2 --------------- RST
 
 I2C LCD Arduino
-VCC 5V GND GND SDA A4 (or the designated SDA pin for your board) SCL A5 (or the designated SCL pin for your board)
+Arduino           LCD I2C
+5V --------------- VCC
+GND -------------- GND
+SDA -------------- A4
+SCL --------------- A5
+
 ## Software Requirements
 
 - Arduino IDE
