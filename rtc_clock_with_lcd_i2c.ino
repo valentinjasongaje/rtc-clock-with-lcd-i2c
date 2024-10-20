@@ -141,12 +141,7 @@ void printDateTimeToLCD(const RtcDateTime& dt) {
   unsigned int year = dt.Year();
   unsigned int dayOfWeek = dt.DayOfWeek();
 
-  if (hour < 12) {
-    strcpy(meridiem, "AM");  // Copy "AM" into meridiem
-  } else {
-    strcpy(meridiem, "PM");  // Copy "PM" into meridiem
-  }
-  if (hour < 1 || hour > 23) {
+  if (hour == 0) {
     // midnight is 12am
     hour = 12;
     strcpy(meridiem, "AM");
@@ -180,7 +175,7 @@ void printDateTimeToLCD(const RtcDateTime& dt) {
 
   snprintf(dateTimeData, sizeof(dateTimeData), "%s %02u, %04u", monthInWord, day, year);
   snprintf(timestring, sizeof(timestring), "%02u:%02u:%02u %s", hour, minute, second, meridiem);
-  String upperText = showDay ? String(dayInWord) + "         " : dateTimeData;
+  String upperText = showDay ? String(dayInWord) + "           " : dateTimeData;
 
   lcd.setCursor(0, 0);
   lcd.print(upperText);
