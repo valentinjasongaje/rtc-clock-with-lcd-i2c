@@ -1,6 +1,6 @@
 # Arduino RTC Module with LCD Display
 
-![RTC Module](link-to-image)  <!-- Replace with an actual image URL -->
+![RTC Module](https://github.com/user-attachments/assets/207d537d-c7de-4486-8df4-f36b79a40e52) 
 
 ## Description
 
