@@ -40,6 +40,7 @@ bool showDay = false;
 short runningPeriod = 20;
 short count = 0;
 short hourCounter = 0;
+
 void setup() {
   Serial.begin(57600);
   Rtc.Begin();
@@ -69,7 +70,6 @@ void setup() {
     Serial.println("RTC was not actively running, starting now");
     Rtc.SetIsRunning(true);
   }
-  // lcd.clear();
   currentMillis = millis();
   startMillis = millis();
 }
@@ -97,11 +97,13 @@ void getDateTime() {
   printDateTimeToLCD(now);
   Serial.println();
   if (Serial.available() > 0) {
+    Rtc.SetIsWriteProtected(false);
     const String incomingByte = Serial.readString();
     RtcDateTime newDateAndTime = RtcDateTime(__DATE__, incomingByte.c_str());
     Rtc.SetDateTime(newDateAndTime);
     Serial.print("Set Time: ");  //Format for time 00:00:00
     Serial.println(incomingByte);
+    Rtc.SetIsWriteProtected(true);
   }
   if (!now.IsValid()) {
     // Common Causes:
@@ -130,7 +132,7 @@ void printDateTimeToLCD(const RtcDateTime& dt) {
   char timestring[16];
   char dateTimeData[20];
   char monthInWord[10];
-  char dayInWord[10];
+  char dayInWord[11];
   char meridiem[3];
 
   unsigned int hour = dt.Hour();
@@ -156,15 +158,15 @@ void printDateTimeToLCD(const RtcDateTime& dt) {
     strcpy(meridiem, "PM");
   }
 
-  if (minute == 59 && second == 59) {
+  if (minute == 54 && second == 59) {
     hourCounter++;
   }
-  //This is to reduced 3 seconds of time every 6 hours
-  //As observed with rtc 1302, it is 3s ahead for every 6 hours
+  //This is to reduced 2 seconds of time every 6 hours
+  //As observed with rtc 1302, it is 3s ahead  for every 6 hours
   if (hourCounter >= 6 && second >= 6) {
     char newTimeString[16];
     hourCounter = 0;
-    second -= 3;
+    second -= 2;
     snprintf(newTimeString, sizeof(newTimeString), "%02u:%02u:%02u", hour, minute, second);
     RtcDateTime newDateAndTime = RtcDateTime(__DATE__, newTimeString);
     Rtc.SetDateTime(newDateAndTime);
